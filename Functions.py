@@ -42,7 +42,7 @@ class Calculator:
         return x/200.0
 
     def total_prob(self, s, e):
-        print(s, e)
+        #print(s, e)
         return self.F(e)-self.F(s) 
         # F is a antiderivative of time-prob function.
 
@@ -56,16 +56,17 @@ class Calculator:
         ctime = self.time_disease[D][P.age][P.gender]
         val_time = self.total_prob(P.time_s/ctime, P.time_e/ctime)
         val_health = self.c_health * P.health
-        print(val_lethal, val_time, val_health)
+        #print(val_lethal, val_time, val_health)
         p_live = val_lethal * val_time * val_health
         # probability to live
-        if P.live: return (1.0/p_live)-1
-        else: return 1-(1.0/(1-p_live))
+        if P.live: return (2.0/(p_live+1))-1
+        else: return 1-(2.0/(2-p_live))
 
     def g(self, H, D):
         val_equip = H.equipments[D]
-        val_time_doc = H.num_doctors[D]/H.num_patients[D]
+        val_time_doc = float(H.num_doctors[D])/H.num_patients[D]
         val_lev_doc = H.lev_doctors[D]
+        #print(val_equip, val_time_doc, val_lev_doc)
         return val_equip*val_time_doc*val_lev_doc
 
 

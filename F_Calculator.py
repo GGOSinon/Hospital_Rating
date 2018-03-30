@@ -22,7 +22,7 @@ num_disease = len(p_lethal)
 num_hospital = len(hospitals)
 
 tot_val = []
-
+print(num_hospital)
 for i in range(num_hospital):
     H = hospitals[i]
     num_patients = len(H.patients)
@@ -39,10 +39,12 @@ for i in range(num_hospital):
     
     for D in range(num_disease):
         val_g[D] = Cal.g(H, D)
-    
+     
     val_h = []
     for D in range(num_disease):
+        print(val_f[D], val_g[D])
         val_h.append(val_f[D]+val_g[D])
+    print('\n')
     tot_val.append(val_h)
 
 F = open('data.txt', 'w')
