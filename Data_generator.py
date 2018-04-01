@@ -12,8 +12,8 @@ def make_random(P):
         S+=P[i]
         if r<S: return i
 
-num_patient = [1000, 1000, 1000, 1000, 1000]
-num_disease = 8
+num_patient = [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+num_disease = 7
 num_hospital = len(num_patient)
 
 with open('disease_preval.pkl', 'rb') as F:

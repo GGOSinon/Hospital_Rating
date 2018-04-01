@@ -2,7 +2,7 @@ import pickle
 import numpy as np
 import openpyxl
 
-label = ['Liver cancer', 'Lung Cancer', 'Stomach cancer', 'Brain cancer', 'Respirstory diseases', 'Heart diseases']
+label = ['Liver cancer', 'Lung Cancer', 'Stomach cancer', 'Brain cancer', 'Respiratory diseases', 'Pneumonia', 'Heart diseases']
 
 sheet_name = ['15-39', '40-49', '50-59', '60-69', '70-79']
 num_disease = len(label)
@@ -43,7 +43,7 @@ for i in range(num_age):
             chk = False
             continue
         else: p_preval[j][i][0] = r[1].value/100.0
-        if r[0].value==break: None
+        if r[0].value==None:break
         if r[1].value==None:p_preval[j][i][0] = 1.0
         if r[2].value==None:p_preval[j][i][1] = 1.0
         else: p_preval[j][i][1] = r[2].value/100.0

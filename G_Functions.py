@@ -14,7 +14,7 @@ class GCalculator:
     def __init__(self, p_preval, p_lethal, t_find):
         self.p_preval = p_preval
         self.p_lethal = p_lethal
-        self.num_disease = 8
+        self.num_disease = 7
         self.num_age = 5
         self.t_find = t_find
         self.dt_find = [100]*self.num_disease
@@ -24,7 +24,7 @@ class GCalculator:
             for j in range(self.num_age):
                 for k in range(2):
                     prob_disease[i]+=p_preval[i][j][k]
-        prob_disease = [1]*8
+        prob_disease = [1]*self.num_disease
         self.prob_disease = self.normalize(prob_disease)
         
         PG = np.zeros((self.num_disease, 2)).tolist()

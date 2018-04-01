@@ -35,7 +35,7 @@ for i in range(num_hospital):
     for P in H.patients:
         val_moral = Cal.f(P)
         D = P.disease
-        if i==4 and D==6: print(val_moral)
+        #if i==4 and D==6: print(val_moral)
         cnt[D] += 1
         val_f[D] += val_moral
  

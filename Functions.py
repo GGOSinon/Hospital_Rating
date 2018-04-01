@@ -6,7 +6,7 @@ class Patient:
     # age: int(0~5)
     # gender : int(0~1)
     # t, dt : int(0~200)
-    # disease : int (0~8)
+    # disease : int (0~7)
     # live : bool(False if dead, True if live)
 
     def __init__(self, age, gender, t, dt, health, disease, com, live):
@@ -27,7 +27,7 @@ class Hospital:
         self.exp_d2 = exp_d2
         self.num_nurse = num_nurse
         self.patients = patients
-        self.num_disease = 8
+        self.num_disease = 7
         cnt_disease = [0]*self.num_disease
         for P in patients:
             D = P.disease
@@ -43,7 +43,7 @@ class Calculator:
     def __init__(self, p_disease, time_disease):
         self.p_disease = p_disease
         self.time_disease = time_disease
-        self.num_disease = 8
+        self.num_disease = 7
         self.num_age = 5
         self.p_max_disease = np.zeros(self.num_disease).tolist()
         for D in range(self.num_disease):
@@ -52,7 +52,6 @@ class Calculator:
                     self.p_max_disease[D] = max(self.p_max_disease[D], p_disease[D][i][j])
         #print(self.p_disease)
         #print(self.p_max_disease)
-        self.c_health = 1
 
     def F(self, x):
         return 1-(log(exp(1-x)+1) / log(math.e+1))
@@ -70,7 +69,7 @@ class Calculator:
         val_com = P.com
         ctime = self.time_disease[D][P.age][P.gender]
         val_time = self.total_prob(P.time_s / ctime, P.time_e / ctime)
-        val_health = self.c_health * P.health
+        val_health = 0.7 + 0.3 * P.health
         p_live = max(0.0, 1 - (1 - val_lethal * val_time * val_health) * val_com)
         # probability to live
         #print(val_time, val_lethal * val_time * val_health, p_live, D)
