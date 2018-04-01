@@ -1,3 +1,5 @@
+from math import exp, log
+import math
 class Patient:
     # age: int(0~5)
     # gender : int(0~1)
@@ -39,7 +41,7 @@ class Calculator:
         self.c_health = 0.1
 
     def F(self, x):
-        return x/200.0
+        return 1-(log(exp(1-x)+1)/log(math.e+1))
 
     def total_prob(self, s, e):
         #print(s, e)
