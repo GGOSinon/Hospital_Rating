@@ -61,23 +61,22 @@ class Calculator:
         return self.F(e)-self.F(s) 
         # F is a antiderivative of time-prob function.
 
-    def f(self, P):
+    def f(self, P, K1 = 0.7, K2 = 1, K3 = 1):
         p_lethal = 1.0
         D = P.disease
         val_lethal = self.p_disease[D][P.age][P.gender] / self.p_max_disease[D]
-        #if self.p_max_disease[D]<1: print(val_lethal, self.p_disease[D][P.age][P.gender], self.p_max_disease[D])
-        val_com = P.com
-        ctime = self.time_disease[D][P.age][P.gender]
+        val_com = 1 + K3 * (P.com - 1) # Sensitivity 3
+        ctime = self.time_disease[D][P.age][P.gender] / K2 # Sensitivity 2
         val_time = self.total_prob(P.time_s / ctime, P.time_e / ctime)
-        val_health = 0.7 + 0.3 * P.health
+        #print(P.health)
+        val_health = K1 + (1 - K1) * P.health # Sensitivity 1
         p_live = max(0.0, 1 - (1 - val_lethal * val_time * val_health) * val_com)
         # probability to live
-        #print(val_time, val_lethal * val_time * val_health, p_live, D)
         if P.live: return (2.0 / (p_live+1)) - 1
         else: return 1 - (2.0 / (2-p_live))
 
-    def g(self, H, D):
-        c_g = 0.33
+    def g(self, H, D, K4 = 0.33, K5 = 1):
+        c_g = K4 # Sensitivity 4
         d1 = H.exp_d1[D]
         d2 = H.exp_d2[D]
         t = 50 - 0.75 * d1
@@ -85,7 +84,8 @@ class Calculator:
         val_equip = math.sqrt(H.equipments[D])
         val_num_nurse = (1 + exp(-8))/(1 + exp(H.num_nurse-8))
         #print(val_equip, val_time_doc, val_lev_doc)
-        return c_g * min(val_equip, val_exp_doc) * val_num_nurse
+        if K5==1: return c_g * min(val_equip, val_exp_doc) * val_num_nurse
+        if K5==2: return c_g * (val_equip + val_exp_doc) * val_num_nurse / 2.0
 
 
 

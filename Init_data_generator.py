@@ -12,7 +12,7 @@ p_lethal = np.zeros((num_disease, num_age, 2)).tolist()
 p_preval = np.zeros((num_disease, num_age, 2)).tolist()
 t_lethal = np.zeros((num_disease, num_age, 2)).tolist()
 T_lethal = [8.14, 3.08, 10.48, 30.22, 7.33, 1.3, 73.26] # T_d
-T_find = [20.73, 13.86, 26.89, 22.06, 100, 0.1, 100] 
+T_find = [20.73, 13.86, 26.89, 22.06, 3, 0.1, 10] 
 #dt_find = []
 
 wb = openpyxl.load_workbook('death_rate.xlsx')

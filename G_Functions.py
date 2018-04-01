@@ -57,7 +57,7 @@ class GCalculator:
         return gender, age
 
     def set_tdt(self, D):
-        t = self.t_find[D]*max(np.random.normal(loc = 1, scale = 0.5), 0) * 0.5
+        t = self.t_find[D]*max(np.random.normal(loc = 1, scale = 0.5), 0) 
         dt = self.dt_find[D]*max(np.random.normal(loc = 1, scale = 0.3), 0)
         return t, dt
 
@@ -73,7 +73,9 @@ class GCalculator:
         t, dt = self.set_tdt(disease)
         live = self.set_live(disease, age, gender, alphas[disease])
         health = np.random.normal(loc = 0.8, scale = 0.1)
-        com = abs(truncnorm(a = -10, b = 10, scale = 0.1).rvs()) * 1.5 + 1 # 1~2.5
+        #print(health)
+        com = 1 + abs(np.random.normal(loc = 0, scale = 0.1))
+        #com = abs(truncnorm(a = -10, b = 10, scale = 0.1).rvs()) * 1.5 + 1 # 1~2.5
         return Patient(age, gender, t, dt, health, disease, com, live)
 
 
