@@ -14,6 +14,7 @@ with open('time_lethal.pkl', 'rb') as F:
 with open('hospitals.pkl', 'rb') as F:
     hospitals = pickle.load(F)
 
+print(p_lethal)
 #with open('patients.pkl', 'rb') as F:
     #patients = pickle.load(F)
 
@@ -22,7 +23,9 @@ num_disease = len(p_lethal)
 num_hospital = len(hospitals)
 
 tot_val = []
+
 print(num_hospital)
+
 for i in range(num_hospital):
     H = hospitals[i]
     num_patients = len(H.patients)
@@ -31,9 +34,11 @@ for i in range(num_hospital):
     val_g = [0]*num_disease
     for P in H.patients:
         val_moral = Cal.f(P)
-        for D in P.diseases:
-            cnt[D] += 1
-            val_f[D] += val_moral
+        D = P.disease
+        if i==4 and D==6: print(val_moral)
+        cnt[D] += 1
+        val_f[D] += val_moral
+ 
     for D in range(num_disease):
         val_f[D] /= cnt[D]
     
