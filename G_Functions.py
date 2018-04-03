@@ -3,14 +3,15 @@ import random as random
 from Functions import Patient, Hospital
 from scipy.stats import truncnorm
 
+# Class of functions used in generating dataset
 class GCalculator:
 
-    def normalize(self, P):
+    def normalize(self, P): # Normalize the probability function
         S = 0.0 
         for i in range(len(P)): S+=P[i]
         for i in range(len(P)): P[i]/=S
         return P
-
+   
     def __init__(self, p_preval, p_lethal, t_find):
         self.p_preval = p_preval
         self.p_lethal = p_lethal
@@ -73,9 +74,7 @@ class GCalculator:
         t, dt = self.set_tdt(disease)
         live = self.set_live(disease, age, gender, alphas[disease])
         health = np.random.normal(loc = 0.8, scale = 0.1)
-        #print(health)
-        com = 1 + abs(np.random.normal(loc = 0, scale = 0.1))
-        #com = abs(truncnorm(a = -10, b = 10, scale = 0.1).rvs()) * 1.5 + 1 # 1~2.5
+        com = abs(truncnorm(a = -10, b = 10, scale = 0.1).rvs()) * 1.5 + 1 # 1~2.5
         return Patient(age, gender, t, dt, health, disease, com, live)
 
 

@@ -2,20 +2,20 @@ import pickle
 import numpy as np
 import openpyxl
 
+# name of diseases 
 label = ['Liver cancer', 'Lung Cancer', 'Stomach cancer', 'Brain cancer', 'Respiratory diseases', 'Pneumonia', 'Heart diseases']
 
 sheet_name = ['15-39', '40-49', '50-59', '60-69', '70-79']
 num_disease = len(label)
 num_age = 5
 
+# 'Survive_d(s_age, s_gender) in the paper
 p_lethal = np.zeros((num_disease, num_age, 2)).tolist()
+
 p_preval = np.zeros((num_disease, num_age, 2)).tolist()
 t_lethal = np.zeros((num_disease, num_age, 2)).tolist()
-#T_lethal = [8.14, 3.08, 10.48, 30.22, 7.33, 1.3, 73.26] # T_d
-T_lethal = [51.09, 107.13, 47.98, 39.87, 32.96, 1, 69]#T
-#T_Scaler = []
-T_find = [20.73, 13.86, 26.89, 22.06, 3, 0.1, 10] 
-#dt_find = []
+T_lethal = [51.09, 107.13, 47.98, 39.87, 32.96, 1, 69] # T_d for diseases
+T_find = [20.73, 13.86, 26.89, 22.06, 3, 0.1, 10] # avg s_td for diseases
 
 wb = openpyxl.load_workbook('death_rate.xlsx')
 
@@ -34,7 +34,7 @@ for i in range(num_age):
         else: p_lethal[j][i][1] = 1-(r[2].value/100.0)
         j+=1
 
-wb = openpyxl.load_workbook('preval_rate.xlsx')
+wb = openpyxl.load_workbook('preval_rate.xlsx') 
 
 for i in range(num_age):
     ws = wb.get_sheet_by_name(sheet_name[i])
