@@ -29,9 +29,8 @@ Cal = GCalculator(p_preval, p_lethal, T_find)
 hospitals = []
 alphas = np.ones((num_hospital, num_disease)).tolist()
 
-for i in range(num_disease): 
-    alphas[0][i] = 0
-    alphas[1][i] = 100
+#for i in range(num_disease): 
+    #alphas[0][i] = 0
 
 for i in range(num_hospital):
     patients = []

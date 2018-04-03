@@ -11,7 +11,9 @@ num_age = 5
 p_lethal = np.zeros((num_disease, num_age, 2)).tolist()
 p_preval = np.zeros((num_disease, num_age, 2)).tolist()
 t_lethal = np.zeros((num_disease, num_age, 2)).tolist()
-T_lethal = [8.14, 3.08, 10.48, 30.22, 7.33, 1.3, 73.26] # T_d
+#T_lethal = [8.14, 3.08, 10.48, 30.22, 7.33, 1.3, 73.26] # T_d
+T_lethal = [51.09, 107.13, 47.98, 39.87, 32.96, 1, 69]#T
+#T_Scaler = []
 T_find = [20.73, 13.86, 26.89, 22.06, 3, 0.1, 10] 
 #dt_find = []
 

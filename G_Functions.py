@@ -17,7 +17,7 @@ class GCalculator:
         self.num_disease = 7
         self.num_age = 5
         self.t_find = t_find
-        self.dt_find = [100]*self.num_disease
+        self.dt_find = [20]*self.num_disease
 
         prob_disease = [0]*self.num_disease
         for i in range(self.num_disease):
