@@ -74,10 +74,10 @@ class Calculator:
             return math.sqrt(1+t*624/12)
 
     def P_max(self, t, T_d):
-        return 0.5*(-1.31*np.tanh(t/T_d-1)+1)
+        return (1/(1+np.tanh(1)))*(-np.tanh(t/T_d-1)+1)
 
     def P_live(self, t, dt, D, K6):
-        return 0.5*(np.tanh(dt/(self.T(D, t)*K6) - 1) + 1) # Sensitivity 6
+        return (1/2.31)*(1.31*np.tanh(dt/(self.T(D, t)*K6) - 1) + 1) # Sensitivity 6
 
     def total_prob(self, t, dt, D, T_d, K6):
         return self.P_live(t, dt, D, K6) * self.P_max(t, T_d)
